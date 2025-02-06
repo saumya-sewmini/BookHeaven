@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">BookHeaven</string>
+    <string name="welcome_sentence">Discover, Buy, and Sell Books with Ease. Welcome to Book Heaven!</string>
+    <string name="start">Get Start</string>
+    <string name="signIn">Sign In</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot">Forgot password?</string>
+    <string name="account">Don’t have an account? Sign Up</string>
+    <string name="welcome">Join with Us..!</string>
+    <string name="fname">First Name</string>
+    <string name="lname">Last Name</string>
+    <string name="mobile">Mobile</string>
+    <string name="signup">Register Now</string>
+    <string name="account2">Already have an account? Sign In</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="app_title">Book Heaven</string>
+
+    <string name="text_view1">Novels</string>
+    <string name="text_view2">Fairy Tales</string>
+    <string name="text_view3">Horror</string>
+    <string name="text_view4">Kids Book</string>
+
+    <string name="text_view8">Profile</string>
+
+    <string name="text_view9">Edit Profile Details</string>
+    <string name="text_view10">Sell Books</string>
+    <string name="text_view11">My Orders</string>
+    <string name="text_view12">Logout</string>
+
+    <string name="text_view13">New Added</string>
+
+    <string name="text_view14">Cart</string>
+    <string name="text_view15">1 Items</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

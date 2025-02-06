@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="start">#964B00</color>
+    <color name="email">#F2D2BD</color>
+    <color name="b1">#11AD0E</color>
+    <color name="forgot">#dee7fc</color>
+    <color name="nav_bar">#462d14</color>
+</resources>
