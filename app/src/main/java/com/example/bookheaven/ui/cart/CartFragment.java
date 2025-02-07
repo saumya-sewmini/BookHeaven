@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,7 +33,7 @@ public class CartFragment extends Fragment {
     private CartAdapter adapter;
     private List<CartItem> cartItems;
 
-    private FragmentCartBinding binding;;
+    private FragmentCartBinding binding;
 
     @Nullable
     @Override

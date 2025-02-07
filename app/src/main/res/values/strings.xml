@@ -37,6 +37,9 @@
     <string name="text_view14">Cart</string>
     <string name="text_view15">1 Items</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="text_view16">Total Price</string>
+    <string name="text_view17">Shipping</string>
+    <string name="text_view18">Checkout</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
