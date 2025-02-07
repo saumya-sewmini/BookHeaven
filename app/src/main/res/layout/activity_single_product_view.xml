@@ -65,7 +65,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout5"
             android:layout_width="0dp"
-            android:layout_height="500dp"
+            android:layout_height="700dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
@@ -73,10 +73,10 @@
             android:elevation="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout11"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintVertical_bias="0.044">
 
             <LinearLayout
                 android:id="@+id/linearLayout12"
@@ -161,6 +161,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayout13"
                 android:layout_width="0dp"
                 android:layout_height="45dp"
                 android:layout_marginStart="8dp"
@@ -194,6 +195,42 @@
                     android:text="Add to Cart"
                     android:textSize="20sp" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/aladin"
+                android:text="Description"
+                android:textColor="@color/email"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.025"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout13"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/aladin"
+                android:text="Lol lol lol lo yai. yai. yai yai yai"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView11"
+                app:layout_constraintVertical_bias="0.505" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
