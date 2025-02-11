@@ -40,9 +40,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout5"
-        android:layout_width="202dp"
-        android:layout_height="326dp"
-        android:layout_marginBottom="92dp"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +53,7 @@
         <com.aemerse.slider.ImageCarousel
             android:id="@+id/carousel"
             android:layout_width="match_parent"
-            android:layout_height="303dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -65,7 +64,7 @@
     <LinearLayout
         android:id="@+id/linearLayout7"
         android:layout_width="0dp"
-        android:layout_height="215dp"
+        android:layout_height="150dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,35 +76,29 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
             android:scrollbars="horizontal" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="416dp"
-        android:layout_height="453dp"
-        android:layout_marginTop="312dp"
-        android:orientation="horizontal"
+        android:layout_width="302dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout5"
-        app:layout_constraintVertical_bias="0.875">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/bookSlider"
+            android:id="@+id/recyclerView2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            android:layout_marginBottom="10dp"/>
-
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 

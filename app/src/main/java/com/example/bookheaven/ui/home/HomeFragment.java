@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aemerse.slider.ImageCarousel;
 import com.aemerse.slider.model.CarouselItem;
+import com.example.bookheaven.HomeItemAdapter;
+import com.example.bookheaven.HomeItemModel;
 import com.example.bookheaven.ItemAdapter;
 import com.example.bookheaven.ItemModel;
 import com.example.bookheaven.R;
@@ -28,6 +31,8 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
     private ItemAdapter itemAdapter;
     private List<ItemModel> itemList;
+    private HomeItemAdapter adapter;
+    private List<HomeItemModel> homeItemList;
 
     private FragmentHomeBinding binding;
 
@@ -53,6 +58,22 @@ public class HomeFragment extends Fragment {
         // Set adapter
         itemAdapter = new ItemAdapter(itemList);
         recyclerView.setAdapter(itemAdapter);
+
+        recyclerView = view.findViewById(R.id.recyclerView2);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
+
+        // Load Data into RecyclerView
+        homeItemList = new ArrayList<>();
+        homeItemList.add(new HomeItemModel("Harry Potter", 1500.00, R.drawable.novel_book));
+        homeItemList.add(new HomeItemModel("The Alchemist", 950.00, R.drawable.horror_book));
+        homeItemList.add(new HomeItemModel("Rich Dad Poor Dad", 1125.00, R.drawable.book_cinderella));
+
+        adapter = new HomeItemAdapter(homeItemList, item -> {
+            // Handle Add to Cart Click
+            Toast.makeText(getContext(), item.getTitle() + " added to cart!", Toast.LENGTH_SHORT).show();
+        });
+
+        recyclerView.setAdapter(adapter);
 
         return view;
 
