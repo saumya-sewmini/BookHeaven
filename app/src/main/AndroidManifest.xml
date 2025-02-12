@@ -12,6 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookHeaven"
         tools:targetApi="31">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".OrderTrakingActivity"
             android:exported="true">
@@ -84,20 +95,17 @@
             android:exported="false" />
         <activity
             android:name=".SigninActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCIH3v-j9gfjGw7UAifNN3oV1-8px1Fh-E" />
     </application>
 
 </manifest>

@@ -44,6 +44,7 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+    implementation(libs.legacy.support.v4)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -54,5 +55,6 @@ dependencies {
     implementation ("com.github.akshaaatt:Sliding-Carousel:1.0.4")
     implementation ("androidx.recyclerview:recyclerview:1.2.1")
     implementation ("com.google.android.material:material:1.7.0")
+    implementation("com.google.android.gms:play-services-maps:19.0.0")
 
 }
