@@ -18,6 +18,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import java.io.IOException;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 public class SigninActivity extends AppCompatActivity {
 
     private EditText emailInput, passwordInput;
@@ -51,7 +62,48 @@ public class SigninActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (validateInputs()){
-                    Toast.makeText(SigninActivity.this, "Sign-In Successful!", Toast.LENGTH_SHORT).show();
+
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            Gson gson = new Gson();
+                            JsonObject user = new JsonObject();
+                            user.addProperty("email", emailInput.getText().toString());
+                            user.addProperty("password", passwordInput.getText().toString());
+
+                            OkHttpClient okHttpClient = new OkHttpClient();
+
+                            RequestBody requestBody = RequestBody.create(gson.toJson(user), MediaType.get("application/json"));
+                            Request request = new Request.Builder()
+                                    .url("http://192.168.8.126:8080/BookHeaven/Signin")
+                                    .post(requestBody)
+                                    .build();
+
+                            try {
+                                Response response = okHttpClient.newCall(request).execute();
+                                String responseText = response.body().string();
+
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (responseText.contains("Login Successful")) {
+                                            Toast.makeText(SigninActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(SigninActivity.this, HomeActivity2.class);
+                                            startActivity(intent);
+                                            finish();
+                                        } else {
+                                            Toast.makeText(SigninActivity.this, "Invalid email or password!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
+
                 }
             }
         });
