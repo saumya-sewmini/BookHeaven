@@ -48,21 +48,18 @@ public class HomeFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView1);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        // Initialize data
         itemList = new ArrayList<>();
         itemList.add(new ItemModel(R.drawable.book_cinderella, "Fairly"));
         itemList.add(new ItemModel(R.drawable.horror_book, "Horror"));
         itemList.add(new ItemModel(R.drawable.novel_book, "Novel"));
         itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "Kids"));
 
-        // Set adapter
         itemAdapter = new ItemAdapter(itemList);
         recyclerView.setAdapter(itemAdapter);
 
         recyclerView = view.findViewById(R.id.recyclerView2);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
 
-        // Load Data into RecyclerView
         homeItemList = new ArrayList<>();
         homeItemList.add(new HomeItemModel("Harry Potter", 1500.00, R.drawable.novel_book));
         homeItemList.add(new HomeItemModel("The Alchemist", 950.00, R.drawable.horror_book));

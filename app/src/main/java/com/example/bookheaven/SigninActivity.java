@@ -1,6 +1,8 @@
 package com.example.bookheaven;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -33,6 +35,7 @@ public class SigninActivity extends AppCompatActivity {
 
     private EditText emailInput, passwordInput;
     private Button signinButton;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,12 @@ public class SigninActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+
+        if (sharedPreferences.getBoolean("isLoggedIn", false)) {
+            navigateToHome();
+        }
 
         TextView textView4 = findViewById(R.id.textView4);
         textView4.setOnClickListener(new View.OnClickListener() {
@@ -89,9 +98,13 @@ public class SigninActivity extends AppCompatActivity {
                                     public void run() {
                                         if (responseText.contains("Login Successful")) {
                                             Toast.makeText(SigninActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(SigninActivity.this, HomeActivity2.class);
-                                            startActivity(intent);
-                                            finish();
+
+                                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                                            editor.putBoolean("isLoggedIn", true);
+                                            editor.putString("userEmail", emailInput.getText().toString());
+                                            editor.apply();
+
+                                            navigateToHome();
                                         } else {
                                             Toast.makeText(SigninActivity.this, "Invalid email or password!", Toast.LENGTH_SHORT).show();
                                         }
@@ -107,6 +120,12 @@ public class SigninActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void navigateToHome() {
+        Intent intent = new Intent(SigninActivity.this, HomeActivity2.class);
+        startActivity(intent);
+        finish();
     }
 
     private boolean validateInputs() {
