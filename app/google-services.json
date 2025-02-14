@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "131903483737",
+    "project_id": "bookheaven-29a0a",
+    "storage_bucket": "bookheaven-29a0a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:131903483737:android:cececa86cc4b3169e32648",
+        "android_client_info": {
+          "package_name": "com.example.bookheaven"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBmdhmizM8HsO7o4esSyrk8mfIITKQzuU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

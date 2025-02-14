@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.bookheaven.AddBookActivity;
 import com.example.bookheaven.R;
 import com.example.bookheaven.SigninActivity;
 import com.example.bookheaven.databinding.FragmentProfileBinding;
@@ -38,6 +39,15 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
 
                 requireActivity().finish();
+            }
+        });
+
+        TextView textView7 = view.findViewById(R.id.textView7);
+        textView7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddBookActivity.class);
+                startActivity(intent);
             }
         });
 
