@@ -137,41 +137,6 @@ public class SignUpActivity extends AppCompatActivity {
 
                     registerUser();
 
-//                    new Thread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//
-//                            Gson gson = new Gson();
-//
-//                            JsonObject user = new JsonObject();
-//                            user.addProperty("first_name", fnameInput.getText().toString());
-//                            user.addProperty("last_name", lnameInput.getText().toString());
-//                            user.addProperty("email", emailInput.getText().toString());
-//                            user.addProperty("password", passwordInput.getText().toString());
-//                            user.addProperty("mobile", mobileInput.getText().toString());
-//
-//                            OkHttpClient okHttpClient = new OkHttpClient();
-//
-//                            RequestBody requestBody = RequestBody.create(gson.toJson(user), MediaType.get("application/json"));
-//                            Request request = new Request.Builder()
-//                                    .url("http://192.168.8.126:8080/BookHeaven/Signup")
-//                                    .post(requestBody)
-//                                    .build();
-//
-//                            Log.i("BookHeaven-log","giya");
-//
-//                            try {
-//                                Response response = okHttpClient.newCall(request).execute();
-//                                String responseText = response.body().string();
-//                                Log.i("BookHeaven-log",responseText);
-//
-//                            } catch (IOException e) {
-//                                e.printStackTrace();
-//                                throw new RuntimeException(e);
-//                            }
-//                        }
-//                    }).start();
-
                 }
             }
         });

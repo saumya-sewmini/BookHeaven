@@ -1,270 +1,385 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bgsecond"
+    android:fillViewport="true"
     tools:context=".SingleProductViewActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
 
-        <LinearLayout
-            android:id="@+id/linearLayout11"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
-
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/small_back_arrow" />
-
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:fontFamily="@font/aladin"
-                android:text="Hath Pana"
-                android:textAlignment="center"
-                android:textColor="@color/email"
-                android:textSize="45sp" />
-
-            <TextView
-                android:id="@+id/textView25"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/aladin"
-                android:text="Available 10"
-                android:textAlignment="viewEnd"
-                android:textColor="@color/forgot"
-                android:textSize="16sp" />
-        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="30dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout5"
-            android:layout_width="0dp"
-            android:layout_height="700dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
-            android:background="@drawable/rounded_border"
-            android:elevation="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout11"
-            app:layout_constraintVertical_bias="0.044">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
             <LinearLayout
-                android:id="@+id/linearLayout12"
+                android:id="@+id/linearLayout11"
                 android:layout_width="0dp"
-                android:layout_height="400dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.01">
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/book_cinderella" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLayout14"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout12"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0">
 
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/small_back_arrow" />
+
                 <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="410dp"
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:fontFamily="@font/aladin"
-                    android:text="Quantity"
+                    android:text="Hath Pana"
+                    android:textAlignment="center"
                     android:textColor="@color/email"
-                    android:textSize="25sp" />
+                    android:textSize="45sp" />
+
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/aladin"
+                    android:text="Available 10"
+                    android:textAlignment="viewEnd"
+                    android:textColor="@color/forgot"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout5"
+                android:layout_width="0dp"
+                android:layout_height="800dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/rounded_border"
+                android:elevation="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout11"
+                app:layout_constraintVertical_bias="0.044">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:id="@+id/linearLayout12"
+                    android:layout_width="0dp"
+                    android:layout_height="400dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.01">
 
                     <ImageView
-                        android:id="@+id/imageView5"
+                        android:id="@+id/imageView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/book_cinderella" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout14"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout12"
+                    app:layout_constraintVertical_bias="0.0">
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="410dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/aladin"
+                        android:text="Quantity"
+                        android:textColor="@color/email"
+                        android:textSize="25sp" />
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:backgroundTint="@color/email"
-                        android:tint="@color/email"
-                        app:srcCompat="@drawable/ic_minus" />
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageView5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/email"
+                            android:tint="@color/email"
+                            app:srcCompat="@drawable/ic_minus" />
+
+                        <TextView
+                            android:id="@+id/textView23"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/aladin"
+                            android:text="1"
+                            android:textAlignment="center"
+                            android:textColor="@color/email"
+                            android:textSize="30sp" />
+
+                        <ImageView
+                            android:id="@+id/imageView7"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/email"
+                            android:tint="@color/email"
+                            app:srcCompat="@drawable/ic_add" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout13"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout14"
+                    app:layout_constraintVertical_bias="0.0">
 
                     <TextView
-                        android:id="@+id/textView23"
+                        android:id="@+id/textView24"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/aladin"
+                        android:text="Rs.1000.00"
+                        android:textColor="@color/white"
+                        android:textSize="34sp" />
+
+                    <Button
+                        android:id="@+id/button5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/nav_bar"
+                        android:fontFamily="@font/aladin"
+                        android:text="Add to Cart"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/aladin"
+                    android:text="Description"
+                    android:textColor="@color/email"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout48"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/aladin"
+                    android:text="Lol lol lol lo yai. yai. yai yai yai"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView11"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout48"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout49"
+                    app:layout_constraintVertical_bias="0.0">
+
+                    <TextView
+                        android:id="@+id/textView74"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:fontFamily="@font/aladin"
-                        android:text="1"
-                        android:textAlignment="center"
+                        android:text="Contact Seller"
                         android:textColor="@color/email"
-                        android:textSize="30sp" />
+                        android:textSize="34sp" />
 
-                    <ImageView
-                        android:id="@+id/imageView7"
+                    <Button
+                        android:id="@+id/button13"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:backgroundTint="@color/email"
-                        android:tint="@color/email"
-                        app:srcCompat="@drawable/ic_add" />
+                        android:backgroundTint="@color/color1"
+                        android:fontFamily="@font/aladin"
+                        android:text="Call Now"
+                        android:textSize="20sp" />
                 </LinearLayout>
 
-            </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearLayout49"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout13"
+                    app:layout_constraintVertical_bias="0.0">
 
-            <LinearLayout
-                android:id="@+id/linearLayout13"
+                    <LinearLayout
+                        android:layout_width="104dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView75"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/aladin"
+                            android:text="Shipping Cost"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/email"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/textView76"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/aladin"
+                            android:text="Rs. 100. 00"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/email"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView77"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/aladin"
+                            android:text="Author"
+                            android:textAlignment="viewEnd"
+                            android:textColor="@color/email"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/textView78"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/aladin"
+                            android:text="Kumarathunga munidasa"
+                            android:textAlignment="viewEnd"
+                            android:textColor="@color/email"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/textView26"
                 android:layout_width="0dp"
-                android:layout_height="45dp"
+                android:layout_height="44dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:orientation="horizontal"
+                android:fontFamily="@font/aladin"
+                android:text="Related"
+                android:textColor="@color/email"
+                android:textSize="34sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout14"
-                app:layout_constraintVertical_bias="0.0">
-
-                <TextView
-                    android:id="@+id/textView24"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/aladin"
-                    android:text="Rs.1000.00"
-                    android:textColor="@color/white"
-                    android:textSize="34sp" />
-
-                <Button
-                    android:id="@+id/button5"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/nav_bar"
-                    android:fontFamily="@font/aladin"
-                    android:text="Add to Cart"
-                    android:textSize="20sp" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="@font/aladin"
-                android:text="Description"
-                android:textColor="@color/email"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.025"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout13"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <TextView
-                android:id="@+id/textView13"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="@font/aladin"
-                android:text="Lol lol lol lo yai. yai. yai yai yai"
-                android:textColor="@color/white"
-                android:textSize="16sp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/rounded_border"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.502"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView11"
-                app:layout_constraintVertical_bias="0.505" />
+                app:layout_constraintTop_toBottomOf="@+id/textView26"
+                app:layout_constraintVertical_bias="0.0">
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/textView26"
-            android:layout_width="0dp"
-            android:layout_height="44dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/aladin"
-            android:text="Related"
-            android:textColor="@color/email"
-            android:textSize="34sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
-            android:background="@drawable/rounded_border"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView26"
-            app:layout_constraintVertical_bias="0.0">
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

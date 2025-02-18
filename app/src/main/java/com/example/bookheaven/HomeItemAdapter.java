@@ -1,5 +1,6 @@
 package com.example.bookheaven;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeItemViewHolder> {
@@ -31,12 +35,26 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
         HomeItemModel item = itemList.get(position);
         holder.title.setText(item.getTitle());
         holder.price.setText("Rs. " + item.getPrice());
-        holder.image.setImageResource(item.getImageResId());
+
+        Glide.with(holder.image.getContext())
+                .load(item.getImageUrl())
+                .placeholder(R.drawable.add_img) // Placeholder image
+                .error(R.drawable.error_image) // Error image
+                .into(holder.image);
 
         // Handle Add to Cart Button Click
         holder.addToCartButton.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onAddToCartClick(item);
+            }
+        });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), SingleProductViewActivity.class);
+                intent.putExtra("BOOK_ID", item.getId());
+                v.getContext().startActivity(intent);
             }
         });
     }

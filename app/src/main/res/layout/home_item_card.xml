@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/homeItemCard"
     android:layout_width="302dp"
     android:layout_height="200dp"
+    android:layout_marginBottom="10dp"
     android:alpha="0.9"
     app:cardCornerRadius="20dp"
     app:cardElevation="5dp">
@@ -27,25 +29,25 @@
                 android:id="@+id/textView54"
                 android:layout_width="match_parent"
                 android:layout_height="53dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/aladin"
                 android:text="Book Name"
                 android:textAlignment="textStart"
                 android:textColor="@color/email"
-                android:textSize="24sp"
-                android:layout_marginLeft="10dp"/>
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/textView55"
                 android:layout_width="match_parent"
                 android:layout_height="53dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/aladin"
                 android:text="Price"
                 android:textAlignment="textStart"
                 android:textColor="@color/email"
-                android:textSize="24sp"
-                android:layout_marginLeft="10dp"/>
+                android:textSize="24sp" />
 
             <ImageButton
                 android:id="@+id/imageButton7"

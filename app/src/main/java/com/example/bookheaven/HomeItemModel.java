@@ -1,18 +1,48 @@
 package com.example.bookheaven;
 
 public class HomeItemModel {
+    private int id;
     private String title;
     private double price;
-    private int imageResId;
+    private String imageUrl;
 
-    public HomeItemModel(String title, double price, int imageResId) {
+    public HomeItemModel(int id, String title, double price, String imageUrl) {
+        this.id = id;
         this.title = title;
         this.price = price;
-        this.imageResId = imageResId;
+        this.imageUrl = imageUrl;
     }
 
-    public String getTitle() { return title; }
-    public double getPrice() { return price; }
-    public int getImageResId() { return imageResId; }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }
 

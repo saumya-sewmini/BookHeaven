@@ -194,16 +194,27 @@
                     android:textColor="@color/email"
                     android:textSize="30dp" />
 
-                <EditText
-                    android:id="@+id/editTextText"
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTextView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:fontFamily="@font/aladin"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
                     android:backgroundTint="@color/email"
                     android:ems="10"
-                    android:fontFamily="@font/aladin"
-                    android:inputType="text"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:inputType="text"/>
+
+                <!--                <AutoCompleteTextView-->
+<!--                    android:id="@+id/editTextText"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:backgroundTint="@color/email"-->
+<!--                    android:ems="10"-->
+<!--                    android:fontFamily="@font/aladin"-->
+<!--                    android:inputType="text"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="20sp" />-->
             </LinearLayout>
 
             <LinearLayout
@@ -354,7 +365,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:backgroundTint="@color/email"
-                        android:foregroundTint="@color/color1"
                         android:popupElevation="20dp" />
                 </LinearLayout>
             </LinearLayout>

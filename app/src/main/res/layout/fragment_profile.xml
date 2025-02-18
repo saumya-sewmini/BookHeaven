@@ -21,8 +21,10 @@
 
         <TextView
             android:id="@+id/textView19"
-            android:layout_width="403dp"
+            android:layout_width="0dp"
             android:layout_height="45dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/aladin"
             android:text="Saumya Sewmini"
             android:textAlignment="center"
@@ -39,6 +41,8 @@
             android:id="@+id/textView21"
             android:layout_width="0dp"
             android:layout_height="31dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/aladin"
             android:text="sau@gmail.com"
             android:textAlignment="center"
@@ -250,16 +254,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.523" />
 
-<!--            <ImageView-->
-<!--                android:id="@+id/imageView21"-->
-<!--                android:layout_width="50dp"-->
-<!--                android:layout_height="0dp"-->
-<!--                android:src="@drawable/arrow"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="1.0"-->
-<!--                app:layout_constraintStart_toEndOf="@+id/textView9"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
+            <!--            <ImageView-->
+            <!--                android:id="@+id/imageView21"-->
+            <!--                android:layout_width="50dp"-->
+            <!--                android:layout_height="0dp"-->
+            <!--                android:src="@drawable/arrow"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintHorizontal_bias="1.0"-->
+            <!--                app:layout_constraintStart_toEndOf="@+id/textView9"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -270,7 +274,7 @@
         android:layout_height="58dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/aladin"
-        android:text="@string/text_view8"
+        android:text="Hi! Welcome To"
         android:textAlignment="center"
         android:textColor="@color/email"
         android:textSize="48sp"
@@ -283,9 +287,11 @@
 
     <ImageView
         android:id="@+id/imageView13"
-        android:layout_width="106dp"
-        android:layout_height="109dp"
-        android:src="@drawable/userprofile"
+        android:layout_width="0dp"
+        android:layout_height="131dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/logononbg"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
