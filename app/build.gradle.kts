@@ -15,6 +15,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "URL", "\"http://192.168.8.126:8080/BookHeaven\"")
     }
 
     buildTypes {
@@ -32,6 +33,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -64,5 +66,11 @@ dependencies {
     implementation ("com.google.firebase:firebase-storage")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+
+    implementation ("com.github.PayHereDevs:payhere-android-sdk:v3.0.17")
+    implementation ("androidx.appcompat:appcompat:1.6.0")
+    implementation ("com.google.code.gson:gson:2.8.0")
+
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
 }

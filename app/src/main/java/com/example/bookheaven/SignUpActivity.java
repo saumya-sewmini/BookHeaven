@@ -159,7 +159,7 @@ public class SignUpActivity extends AppCompatActivity {
                     OkHttpClient okHttpClient = new OkHttpClient();
                     RequestBody requestBody = RequestBody.create(gson.toJson(user), MediaType.get("application/json"));
                     Request request = new Request.Builder()
-                            .url("http://192.168.8.126:8080/BookHeaven/Signup")
+                            .url(BuildConfig.URL+"/Signup")
                             .post(requestBody)
                             .build();
 

@@ -17,6 +17,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.bookheaven.AddBookActivity;
+import com.example.bookheaven.OrderHistoryActivity;
+import com.example.bookheaven.OrderTrakingActivity;
 import com.example.bookheaven.ProfileUpdateActivity;
 import com.example.bookheaven.R;
 import com.example.bookheaven.SigninActivity;
@@ -34,6 +36,8 @@ public class ProfileFragment extends Fragment {
 
         textView19 = view.findViewById(R.id.textView19);
         textView21 = view.findViewById(R.id.textView21);
+
+
 
         TextView textView9 = view.findViewById(R.id.textView9);
         textView9.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +72,17 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        TextView textView8 = view.findViewById(R.id.textView8);
+        textView8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), OrderHistoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
         return view;
 

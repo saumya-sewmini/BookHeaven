@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.bookheaven.AddBookActivity;
 import com.example.bookheaven.BookDTO;
+import com.example.bookheaven.BuildConfig;
 import com.example.bookheaven.R;
 import com.example.bookheaven.SearchBottomSheet;
 import com.example.bookheaven.databinding.FragmentSearchBinding;
@@ -87,7 +88,7 @@ public class SearchFragment extends Fragment {
             public void run() {
                 OkHttpClient okHttpClient=new OkHttpClient();
                 Request request = new Request.Builder()
-                        .url("http://192.168.8.126:8080/BookHeaven/GetCatergories")
+                        .url(BuildConfig.URL+"/GetCatergories")
                         .get()
                         .build();
                 try {
@@ -131,7 +132,7 @@ public class SearchFragment extends Fragment {
 
                 OkHttpClient client = new OkHttpClient();
 
-                HttpUrl.Builder urlBuilder = HttpUrl.parse("http://192.168.8.126:8080/BookHeaven/SearchBooks").newBuilder();
+                HttpUrl.Builder urlBuilder = HttpUrl.parse(BuildConfig.URL+"/SearchBooks").newBuilder();
                 if (!title.isEmpty()) urlBuilder.addQueryParameter("title", title);
                 if (!author.isEmpty()) urlBuilder.addQueryParameter("author", author);
                 if (!category.isEmpty()) urlBuilder.addQueryParameter("category", category);
@@ -209,7 +210,7 @@ public class SearchFragment extends Fragment {
                 ImageView bookImageView = bookView.findViewById(R.id.imageView22);
 
                 titleView.setText(book.getBookTitle());
-                priceView.setText("$" + book.getPrice());
+                priceView.setText("Rs" + book.getPrice());
 
                 Glide.with(this).load(book.getImageUrl()).into(bookImageView);
 

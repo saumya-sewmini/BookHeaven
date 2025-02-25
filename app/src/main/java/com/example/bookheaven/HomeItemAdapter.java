@@ -1,6 +1,7 @@
 package com.example.bookheaven;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
     @Override
     public void onBindViewHolder(@NonNull HomeItemViewHolder holder, int position) {
         HomeItemModel item = itemList.get(position);
+
         holder.title.setText(item.getTitle());
         holder.price.setText("Rs. " + item.getPrice());
 
@@ -53,7 +55,25 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), SingleProductViewActivity.class);
-                intent.putExtra("BOOK_ID", item.getId());
+                intent.putExtra("book_title", item.getTitle());
+                intent.putExtra("book_price", item.getPrice());
+                intent.putExtra("book_image", item.getImageUrl());
+                intent.putExtra("book_id", item.getId());
+                intent.putExtra("book_qty", item.getQty());
+                intent.putExtra("description", item.getDescription());
+                intent.putExtra("author", item.getAuthor());
+                intent.putExtra("user_id", item.getUser_id());
+                intent.putExtra("shipping_price", item.getShipping_price());
+
+                Log.i("BookHeaven-log-single", "book title: " + item.getTitle());
+                Log.i("BookHeaven-log-single", "book price: " + item.getPrice());
+                Log.i("BookHeaven-log-single", "book image: " + item.getImageUrl());
+                Log.i("BookHeaven-log-single", "book id: " + item.getId());
+                Log.i("BookHeaven-log-single", "book qty: " + item.getQty());
+                Log.i("BookHeaven-log-single", "book description: " + item.getDescription());
+                Log.i("BookHeaven-log-single", "book author: " + item.getAuthor());
+                Log.i("BookHeaven-log-single", "book shipping_price: " + item.getShipping_price());
+
                 v.getContext().startActivity(intent);
             }
         });
@@ -76,6 +96,7 @@ public class HomeItemAdapter extends RecyclerView.Adapter<HomeItemAdapter.HomeIt
             image = itemView.findViewById(R.id.imageView22);
             addToCartButton = itemView.findViewById(R.id.imageButton7);
         }
+
     }
 
     // Interface for Click Events

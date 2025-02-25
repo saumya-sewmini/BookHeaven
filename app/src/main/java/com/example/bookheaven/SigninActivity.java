@@ -97,7 +97,7 @@ public class SigninActivity extends AppCompatActivity {
                 OkHttpClient okHttpClient = new OkHttpClient();
                 RequestBody requestBody = RequestBody.create(gson.toJson(user), MediaType.get("application/json"));
                 Request request = new Request.Builder()
-                        .url("http://192.168.8.126:8080/BookHeaven/Signin")
+                        .url(BuildConfig.URL+"/Signin")
                         .post(requestBody)
                         .build();
 

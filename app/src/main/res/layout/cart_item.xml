@@ -35,7 +35,7 @@
 
             <!-- Product Name -->
             <TextView
-                android:id="@+id/cart_item_name"
+                android:id="@+id/order_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Book Title"
@@ -46,7 +46,7 @@
 
             <!-- Product Price -->
             <TextView
-                android:id="@+id/cart_item_price"
+                android:id="@+id/order_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rs.1000.00"
@@ -70,7 +70,7 @@
                     app:tint="@color/start" />
 
                 <TextView
-                    android:id="@+id/cart_item_qty"
+                    android:id="@+id/order_date"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"

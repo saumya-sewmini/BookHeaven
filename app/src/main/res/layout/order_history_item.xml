@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <!-- Product Image -->
+        <ImageView
+            android:id="@+id/order_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/image_shadow"
+            android:elevation="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bookopen" />
+
+        <LinearLayout
+            android:layout_width="179dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="12dp">
+
+            <!-- Product Name -->
+            <TextView
+                android:id="@+id/order_name"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/aladin"
+                android:text="Order 1"
+                android:textColor="@color/color1"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <!-- Product Price -->
+            <TextView
+                android:id="@+id/order_price"
+                android:layout_width="277dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/aladin"
+                android:text="Rs.1000.00"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/order_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/aladin"
+                android:text="Total date"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="276dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/aladin"
+                android:text="Status"
+                android:textColor="@color/nav_bar"
+                android:textSize="20sp" />
+
+            <!-- Quantity Selector -->
+
+        </LinearLayout>
+
+        <!-- Remove Button -->
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

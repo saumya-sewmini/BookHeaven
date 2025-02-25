@@ -79,6 +79,18 @@ public class AddBookActivity extends AppCompatActivity {
             return insets;
         });
 
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        int userId = sharedPreferences.getInt("user_id", -1);
+
+        Button myBook = findViewById(R.id.button10);
+        myBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddBookActivity.this, MyBookActivity.class);
+                startActivity(intent);
+            }
+        });
+
         authorInput = findViewById(R.id.autoCompleteTextView);
         loadAuthorsFromDatabase();
 
@@ -208,173 +220,133 @@ public class AddBookActivity extends AppCompatActivity {
     }
 
     private void saveBook(String uploadedImageUrl) {
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        int userId = sharedPreferences.getInt("user_id", -1);
+
+        EditText bookNameInput = findViewById(R.id.editTextText2);
+        EditText descriptionInput = findViewById(R.id.editTextTextMultiLine);
+        EditText priceInput = findViewById(R.id.editTextText7);
+        EditText shippingInput = findViewById(R.id.editTextText8);
+        AutoCompleteTextView authorInput = findViewById(R.id.autoCompleteTextView);
+        Spinner categorySpinner = findViewById(R.id.spinner);
+        TextView qtyInput = findViewById(R.id.textView33);
+        EditText latitudeInput = findViewById(R.id.editTextText23);
+        EditText longitudeInput = findViewById(R.id.editTextText24);
+
+        String bookTitle = bookNameInput.getText().toString();
+        String description = descriptionInput.getText().toString();
+        String priceText = priceInput.getText().toString();
+        String shippingText = shippingInput.getText().toString();
+        String author = authorInput.getText().toString();
+        String category = categorySpinner.getSelectedItem().toString();
+        String qty = qtyInput.getText().toString();
+        String latitude = latitudeInput.getText().toString();
+        String longitude = longitudeInput.getText().toString();
+
+        if (bookTitle.isEmpty()){
+            Toast.makeText(AddBookActivity.this, "Book title is required!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (description.isEmpty()){
+            Toast.makeText(AddBookActivity.this, "Description is required!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (priceText.isEmpty()){
+            Toast.makeText(AddBookActivity.this, "Price is required!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (shippingText.isEmpty()){
+            Toast.makeText(AddBookActivity.this, "Shipping cost is required!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (author.isEmpty()){
+            Toast.makeText(AddBookActivity.this, "Author is required!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (category.isEmpty()){
+            Toast.makeText(AddBookActivity.this, "Category is required!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (qty.isEmpty()){
+            Toast.makeText(AddBookActivity.this, "Quantity is required!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-
-                SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-                int userId = sharedPreferences.getInt("user_id", -1);
-
-                Log.i("BookHeaven-log", "Retrieved user_id: " + userId);
-
-                if (userId == -1){
-
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            Toast.makeText(AddBookActivity.this, "User not logged in!", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    Log.e("BookHeaven-log", "ERROR: user_id is NULL in AddBookActivity");
-                    return;
-
-                }
-
-                EditText bookNameInput = findViewById(R.id.editTextText2);
-                EditText descriptionInput = findViewById(R.id.editTextTextMultiLine);
-                EditText priceInput = findViewById(R.id.editTextText7);
-                EditText shippingInput = findViewById(R.id.editTextText8);
-                Button updateButton = findViewById(R.id.button11);
-
-                String bookTitle = bookNameInput.getText().toString().trim();
-                String description = descriptionInput.getText().toString().trim();
-                String priceText = priceInput.getText().toString().trim();
-                String shippingText = shippingInput.getText().toString().trim();
-
-                if (bookTitle.isEmpty()){
-
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            bookNameInput.setError("Book title is required!");
-                        }
-                    });
-                    return;
-
-                }
-                if (description.isEmpty()){
-
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            descriptionInput.setError("Description is required!");
-                        }
-                    });
-                    return;
-
-                }
-                if (priceText.isEmpty()){
-
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            priceInput.setError("Price is required!");
-                        }
-                    });
-                    return;
-
-                }
-                if (shippingText.isEmpty()){
-
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            shippingInput.setError("Shipping cost is required!");
-                        }
-                    });
-                    return;
-
-                }
-
-                double price = Double.parseDouble(priceText);
-                double shippingPrice = Double.parseDouble(shippingText);
-                int quantity = Integer.parseInt(quantityTextView.getText().toString());
-
                 Gson gson = new Gson();
-                JsonObject book = new JsonObject();
-                book.addProperty("book_title", bookTitle);
-                book.addProperty("description", description);
-                book.addProperty("price", price);
-                book.addProperty("qty", quantity);
-                book.addProperty("shipping_price", shippingPrice);
-                book.addProperty("imageUrl", uploadedImageUrl);
+                JsonObject addBook = new JsonObject();
 
-                JsonObject author = new JsonObject();
-                author.addProperty("name", authorInput.getText().toString());
-                book.add("author_id", author);
+                addBook.addProperty("title", bookTitle);
+                addBook.addProperty("description", description);
+                addBook.addProperty("price", priceText);
+                addBook.addProperty("shipping_cost", shippingText);
+                addBook.addProperty("author", author);
+                addBook.addProperty("category", category);
+                addBook.addProperty("quantity", qty);
+                addBook.addProperty("image_url", uploadedImageUrl);
+                addBook.addProperty("user_id", userId);
+                addBook.addProperty("latitude", latitude);
+                addBook.addProperty("longitude", longitude);
 
-                JsonObject bookStatus = new JsonObject();
-                bookStatus.addProperty("id", 1);
-                book.add("book_status_id", bookStatus);
+                Log.i("BookHeaven-log", " "+ bookTitle);
+                Log.i("BookHeaven-log", " "+ description);
+                Log.i("BookHeaven-log", " "+ priceText);
+                Log.i("BookHeaven-log", " "+ shippingText);
+                Log.i("BookHeaven-log", " "+ author);
+                Log.i("BookHeaven-log", " "+ category);
+                Log.i("BookHeaven-log", " "+ qty);
+                Log.i("BookHeaven-log", " "+ uploadedImageUrl);
+                Log.i("BookHeaven-log", " "+ userId);
+                Log.i("BookHeaven-log", " "+ latitude);
+                Log.i("BookHeaven-log", " "+ longitude);
 
-                JsonObject category = new JsonObject();
-                category.addProperty("id", categoryList.indexOf(categorySpinner.getSelectedItem()) + 1);
-                book.add("book_catergory_id", category);
-
-                JsonObject userObject = new JsonObject();
-                userObject.addProperty("id", userId);
-                book.add("user_id", userObject);
-
-                Log.i("BookHeaven-log", "Sending book data: " + book.toString());
-
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("last_uploaded_image", uploadedImageUrl);
-                editor.apply();
-
+                Log.i("BookHeaven-log", "success-data parse the frontend (address)");
                 OkHttpClient okHttpClient = new OkHttpClient();
-                RequestBody requestBody = RequestBody.create(gson.toJson(book), MediaType.get("application/json"));
+                // Prepare the request
+                RequestBody requestBody = RequestBody.create(gson.toJson(addBook), MediaType.get("application/json"));
                 Request request = new Request.Builder()
-                        .url("http://192.168.8.126:8080/BookHeaven/SaveBook")
+                        .url(BuildConfig.URL+"/SaveBook")
                         .post(requestBody)
                         .build();
 
-                Log.i("BookHeaven-log","send data to backend");
-
                 try {
-
                     Response response = okHttpClient.newCall(request).execute();
+
                     String responseText = response.body().string();
+
+                    Log.i("BookHeaven-logggg", " "+ responseText);
                     JSONObject jsonResponse = new JSONObject(responseText);
 
-                    Log.i("BookHeaven-log","get data from backend");
+                    Log.i("BookHeaven-log", "success-data parse the backend (book)");
+                    // Handle success or failure
+                    if (jsonResponse.getBoolean("success")) {
 
-                    if (jsonResponse.getBoolean("success")){
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(AddBookActivity.this, "Book Saved!", Toast.LENGTH_SHORT).show();
-                                Log.i("BookHeaven-log","book saved!");
-                                updateButton.setEnabled(false);
-                                updateButton.setAlpha(0.5f);
-                            }
+                        runOnUiThread(() -> {
+                            Toast.makeText(AddBookActivity.this, "Book Updated Successfully!", Toast.LENGTH_SHORT).show();
+                            Log.i("BookHeaven-log", "success-data update book");
                         });
-                    }else {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(AddBookActivity.this, "Failed to Save!", Toast.LENGTH_SHORT).show();
-                                Log.i("BookHeaven-log","failed to save!");
-                            }
+                    } else {
+                        runOnUiThread(() -> {
+                            Toast.makeText(AddBookActivity.this, "Failed to Update Book!", Toast.LENGTH_SHORT).show();
+                            Log.e("BookHeaven-log", "failed-data update Book");
                         });
                     }
 
-                }catch (IOException | JSONException e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
             }
         }).start();
-
     }
 
     private void loadAuthorsFromDatabase() {
         new Thread(() -> {
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
-                    .url("http://192.168.8.126:8080/BookHeaven/GetAuthors")
+                    .url(BuildConfig.URL+"/GetAuthors")
                     .get()
                     .build();
             try {
@@ -408,7 +380,7 @@ public class AddBookActivity extends AppCompatActivity {
             public void run() {
                 OkHttpClient okHttpClient=new OkHttpClient();
                 Request request = new Request.Builder()
-                        .url("http://192.168.8.126:8080/BookHeaven/GetCatergories")
+                        .url(BuildConfig.URL+"/GetCatergories")
                         .get()
                         .build();
                 try {

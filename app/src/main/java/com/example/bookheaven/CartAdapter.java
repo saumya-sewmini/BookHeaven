@@ -1,6 +1,6 @@
 package com.example.bookheaven;
 
-import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,80 +12,158 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import com.bumptech.glide.Glide;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder>{
 
-    private Context context;
-    private List<CartItem> cartItems;
-
-    public CartAdapter(Context context, List<CartItem> cartItems) {
-        this.context = context;
-        this.cartItems = cartItems;
+    private ArrayList<CartItem> cartItemArrayList;
+    public CartAdapter(ArrayList<CartItem> getCartItemArrayList) {
+        this.cartItemArrayList = getCartItemArrayList;
     }
+
 
     @NonNull
     @Override
-    public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.cart_item, parent, false);
+    public CartAdapter.CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.cart_item, parent, false);
+//        CartViewHolder cartViewHolder = new CartViewHolder(view);
+
         return new CartViewHolder(view);
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        CartItem item = cartItems.get(position);
-        holder.name.setText(item.getName());
-        holder.price.setText("Rs." + (item.getPrice() * item.getQuantity()));
-        holder.image.setImageResource(item.getImageResId());
-        holder.qty.setText(String.valueOf(item.getQuantity()));
+    public void onBindViewHolder(@NonNull CartAdapter.CartViewHolder holder, int position) {
 
-        // Increase Quantity
+        if (position >= cartItemArrayList.size()) return;
+
+        CartItem cartItem = cartItemArrayList.get(position);
+        holder.title.setText(cartItem.getTitle());
+        holder.price.setText("Rs." + (cartItem.getPrice() * cartItem.getQuantity()));
+        holder.quantity.setText(String.valueOf(cartItem.getQuantity()));
+
+        Glide.with(holder.imageUrl.getContext())
+                .load(cartItem.getImageUrl())
+                .placeholder(R.drawable.add_img)
+                .error(R.drawable.error_image)
+                .into(holder.imageUrl);
+
         holder.btnIncrease.setOnClickListener(v -> {
-            item.setQuantity(item.getQuantity() + 1);
-            holder.qty.setText(String.valueOf(item.getQuantity()));
-            holder.price.setText("Rs." + (item.getPrice() * item.getQuantity()));
+            cartItem.setQuantity(cartItem.getQuantity() + 1);
+            notifyItemChanged(position);
+            cartQTY(cartItem.getId(), "increase");
         });
 
-        // Decrease Quantity (Minimum is 1)
         holder.btnDecrease.setOnClickListener(v -> {
-            if (item.getQuantity() > 1) {
-                item.setQuantity(item.getQuantity() - 1);
-                holder.qty.setText(String.valueOf(item.getQuantity()));
-                holder.price.setText("Rs." + (item.getPrice() * item.getQuantity()));
+            if (cartItem.getQuantity() > 1) {
+                cartItem.setQuantity(cartItem.getQuantity() - 1);
+                notifyItemChanged(position);
+                cartQTY(cartItem.getId(), "descrease");
             }
         });
 
-        // Fade-in animation
-        Animation animation = AnimationUtils.loadAnimation(context, R.anim.item_fade_in);
-        holder.itemView.startAnimation(animation);
-
-        // Handle Remove Click
         holder.remove.setOnClickListener(v -> {
-            cartItems.remove(position);
-            notifyItemRemoved(position);
+            cartItemArrayList.remove(position);
+
+            notifyDataSetChanged();
+            new Thread(new Runnable() {
+
+                @Override
+                public void run() {
+                    OkHttpClient okHttpClient = new OkHttpClient();
+
+                    String itemId = String.valueOf(cartItem.getId());
+                    Log.i("CartAdapter-log", "item id: " + itemId);
+
+                   HttpUrl url = HttpUrl.parse(BuildConfig.URL+"/DeleteCartItem")
+                                   .newBuilder()
+                                           .addQueryParameter("itemId", String.valueOf(cartItem.getId()))
+                                                   .build();
+                   Request request = new Request.Builder().url(url.toString()).build();
+
+                    okHttpClient.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                            e.printStackTrace();
+                            Log.e("CartAdapter-log", "Network request failed: " + e.getMessage());
+                        }
+
+                        @Override
+                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                            if (response.isSuccessful()) {
+
+                                Log.i("CartAdapter-log", "Network request successful");
+                            } else {
+                                Log.e("CartAdapter-log", "Network request failed with code: " + response.code());
+                            }
+
+                        }
+                    });
+
+                }
+            }).start();
         });
+
+        Log.d("CartAdapter-log", "Binding item: " + cartItem.getTitle() + " | Quantity: " + cartItem.getQuantity());
+
     }
 
     @Override
     public int getItemCount() {
-        return cartItems.size();
+        return cartItemArrayList.size();
     }
 
-    public static class CartViewHolder extends RecyclerView.ViewHolder {
-        TextView name, price, qty;
-        ImageView image, remove, btnIncrease, btnDecrease;
-
+    public class CartViewHolder extends RecyclerView.ViewHolder {
+        TextView title, price, quantity;
+        ImageView imageUrl, remove, btnIncrease, btnDecrease;
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.cart_item_name);
-            price = itemView.findViewById(R.id.cart_item_price);
-            qty = itemView.findViewById(R.id.cart_item_qty);
-            image = itemView.findViewById(R.id.cart_item_image);
+            title = itemView.findViewById(R.id.order_name);
+            price = itemView.findViewById(R.id.order_price);
+            quantity = itemView.findViewById(R.id.order_date);
+            imageUrl = itemView.findViewById(R.id.cart_item_image);
             remove = itemView.findViewById(R.id.cart_item_remove);
             btnIncrease = itemView.findViewById(R.id.btn_increase);
             btnDecrease = itemView.findViewById(R.id.btn_decrease);
         }
     }
 
+    public void cartQTY (int id, String status){
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient okHttpClient = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .url(BuildConfig.URL+"/GetCartQTY?status=" + status + "&id=" + id)
+                        .get()
+                        .build();
+
+                okHttpClient.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        Log.e("CartAdapter-log", "Network request failed: " + e.getMessage());
+                    }
+
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                        Log.i("CartAdapter-log", "done");
+                    }
+                });
+
+            }
+        }).start();
+
+    }
 }

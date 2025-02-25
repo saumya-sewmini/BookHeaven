@@ -1,10 +1,16 @@
 package com.example.bookheaven.ui.home;
 
+import static android.app.ProgressDialog.show;
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,12 +21,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aemerse.slider.ImageCarousel;
 import com.aemerse.slider.model.CarouselItem;
+import com.example.bookheaven.BookDTO;
+import com.example.bookheaven.BuildConfig;
 import com.example.bookheaven.HomeItemAdapter;
 import com.example.bookheaven.HomeItemModel;
 import com.example.bookheaven.ItemAdapter;
 import com.example.bookheaven.ItemModel;
+import com.example.bookheaven.ProfileUpdateActivity;
 import com.example.bookheaven.R;
+//import com.example.bookheaven.TestActivity;
 import com.example.bookheaven.databinding.FragmentHomeBinding;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,8 +44,10 @@ import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class HomeFragment extends Fragment {
@@ -43,7 +57,7 @@ public class HomeFragment extends Fragment {
     private List<ItemModel> itemList;
     private HomeItemAdapter adapter;
     private List<HomeItemModel> homeItemList;
-
+    private ArrayList<BookDTO> bookList = new ArrayList<>();
     private FragmentHomeBinding binding;
 
     @Nullable
@@ -52,6 +66,10 @@ public class HomeFragment extends Fragment {
 //        return inflater.inflate(R.layout.fragment_home, container, false);
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        int userId = sharedPreferences.getInt("user_id", -1);
+        Log.i("BookHeaven-log-single", "user id: " + userId);
 
         setupImageCarousel();
 
@@ -64,42 +82,94 @@ public class HomeFragment extends Fragment {
 
         loadCategories();
 
-//        itemList = new ArrayList<>();
-//        itemList.add(new ItemModel(R.drawable.book_cinderella, "Fairly"));
-//        itemList.add(new ItemModel(R.drawable.horror_book, "Horror"));
-//        itemList.add(new ItemModel(R.drawable.novel_book, "Novel"));
-//        itemList.add(new ItemModel(R.drawable.ic_launcher_foreground, "Kids"));
-//
-//        itemAdapter = new ItemAdapter(itemList);
-//        recyclerView.setAdapter(itemAdapter);
-
         recyclerView = view.findViewById(R.id.recyclerView2);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
 
+        loadBooks();
         homeItemList = new ArrayList<>();
         adapter = new HomeItemAdapter(homeItemList, new HomeItemAdapter.OnItemClickListener() {
             @Override
             public void onAddToCartClick(HomeItemModel item) {
                 // Handle add to cart click event
                 Toast.makeText(requireContext(), item.getTitle() + " added to cart!", Toast.LENGTH_SHORT).show();
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                int userId = sharedPreferences.getInt("user_id", -1);
+                int bookId = item.getId();
+                int qty = 1;
+
+                Log.i("BookHeaven-log-single", "book idqqqqq: " + userId);
+
+                addBookToCart(userId, bookId, qty);
             }
 
 
         });
 
-
         recyclerView.setAdapter(adapter);
-
-        loadBooks();
-//        homeItemList = new ArrayList<>();
-//        homeItemList.add(new HomeItemModel("Harry Potter", 1500.00, R.drawable.novel_book));
-//        homeItemList.add(new HomeItemModel("The Alchemist", 950.00, R.drawable.horror_book));
-//        homeItemList.add(new HomeItemModel("Rich Dad Poor Dad", 1125.00, R.drawable.book_cinderella));
-
 
         return view;
 
     }
+
+    private void addBookToCart(int userId, int bookId, int qty) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Gson gson = new Gson();
+                JsonObject cart = new JsonObject();
+
+                cart.addProperty("user_id", String.valueOf(userId));
+                cart.addProperty("book_id", String.valueOf(bookId));
+                cart.addProperty("quantity", String.valueOf(qty));
+
+                Log.i("cart-log", "user_id: " + userId);
+                Log.i("cart-log", "book_id: " + bookId);
+                Log.i("cart-log", "quantity: " + qty);
+
+                OkHttpClient client = new OkHttpClient();
+                RequestBody requestBody = RequestBody.create(gson.toJson(cart), MediaType.get("application/json"));
+                Request request = new Request.Builder()
+                        .url(BuildConfig.URL+"/AddCart")
+                        .post(requestBody)
+                        .build();
+////
+                try {
+                    Response response = client.newCall(request).execute();
+
+                    String responseText = response.body().string();
+
+                    Log.i("cart-log", " "+ responseText);
+                    JSONObject jsonResponse = new JSONObject(responseText);
+
+                    Log.i("cart-log", "success-data parse the backend (address)");
+
+                    // Handle success or failure
+                    if (jsonResponse.getBoolean("success")) {
+                        requireActivity().runOnUiThread(() -> {
+                            Toast.makeText(requireActivity(), "Cart Updated Successfully!", Toast.LENGTH_SHORT).show();
+                            Log.i("cart-log", "success-data update address");
+                        });
+                    } else {
+                        requireActivity().runOnUiThread(() -> {
+                            Toast.makeText(requireActivity(), "Failed to Update Cart!", Toast.LENGTH_SHORT).show();
+                            Log.e("cart-log", "failed-data update cart");
+                        });
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    requireActivity()
+                            .runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(requireActivity(),"Network Error", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
+
+            }
+        }).start();
+    }
+
 
     private void loadBooks() {
         Log.i("BookHeaven-log", "Loading books...");
@@ -107,10 +177,12 @@ public class HomeFragment extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                Gson gson = new Gson();
+
                 OkHttpClient okHttpClient = new OkHttpClient();
 
                 Request request = new Request.Builder()
-                        .url("http://192.168.8.126:8080/BookHeaven/GetBooks") // Correct API endpoint
+                        .url(BuildConfig.URL+"/GetBooks")
                         .get()
                         .build();
 
@@ -145,7 +217,8 @@ public class HomeFragment extends Fragment {
                                     for (int i = 0; i < books.length(); i++) {
 
                                         JSONObject bookObj = books.getJSONObject(i);
-                                        int id = bookObj.has("id") ? bookObj.getInt("id") : -1;
+                                        int id = bookObj.has("book_id") ? bookObj.getInt("book_id") : -1;
+                                        Log.d("xxxxxxxxxx", "book id:" +id);
 
                                         String title = bookObj.getString("book_title");
                                         double price = bookObj.getDouble("price");
@@ -216,7 +289,7 @@ public class HomeFragment extends Fragment {
                 OkHttpClient okHttpClient = new OkHttpClient();
 
                 Request request = new Request.Builder()
-                        .url("http://192.168.8.126:8080/BookHeaven/GetCatergories") // Ensure correct API endpoint
+                        .url(BuildConfig.URL+"/GetCatergories") // Ensure correct API endpoint
                         .get()
                         .build();
 
@@ -340,9 +413,9 @@ public class HomeFragment extends Fragment {
         carousel.setShowNavigationButtons(false);
 
         List<CarouselItem> carouselItems = new ArrayList<>();
-        carouselItems.add(new CarouselItem(R.drawable.book_cinderella)); // Replace with actual drawable images
-        carouselItems.add(new CarouselItem(R.drawable.horror_book));
-        carouselItems.add(new CarouselItem(R.drawable.novel_book));
+        carouselItems.add(new CarouselItem(R.drawable.caro_one)); // Replace with actual drawable images
+        carouselItems.add(new CarouselItem(R.drawable.caro_two));
+        carouselItems.add(new CarouselItem(R.drawable.caro_three));
 
         carousel.setData(carouselItems);
     }

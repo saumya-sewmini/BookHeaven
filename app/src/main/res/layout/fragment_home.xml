@@ -16,7 +16,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="1087dp">
+            android:layout_height="2087dp">
 
             <TextView
                 android:id="@+id/textView9"
@@ -32,7 +32,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/linearLayout4"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.03" />
+                app:layout_constraintVertical_bias="0.011" />
 
             <LinearLayout
                 android:id="@+id/linearLayout4"
@@ -99,7 +99,7 @@
             <LinearLayout
                 android:id="@+id/linearLayout47"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="805dp"
                 android:layout_marginStart="45dp"
                 android:layout_marginEnd="45dp"
                 android:orientation="vertical"
@@ -113,7 +113,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView2"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="802dp" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
