@@ -6,7 +6,7 @@
 
 ## 📱 Screenshots
 
-https://github.com/saumya-sewmini/BookHeaven/blob/6f49e530bd3b93d5d2dc8d2401e5a2e8da6f4086/Screenshot%202025-08-02%20001832.png
+![image alt](https://github.com/saumya-sewmini/BookHeaven/blob/6f49e530bd3b93d5d2dc8d2401e5a2e8da6f4086/Screenshot%202025-08-02%20001832.png)
 
 ---
 
