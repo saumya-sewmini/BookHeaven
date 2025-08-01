@@ -79,8 +79,7 @@ The app follows a **modular, layered architecture**:
 
 ## 💡 ER Diagram
 
-> 📌 _Insert an ER diagram image showing Users, Books, Orders, etc._  
-![ER Diagram](screenshots/er-diagram.png)
+![ER Diagram](https://github.com/saumya-sewmini/BookHeaven/blob/ca032532152c6cdab21811dd4d9bff6e27179627/image.png)
 
 ---
 
@@ -88,8 +87,7 @@ The app follows a **modular, layered architecture**:
 
 | Layer            | Technology                  |
 |------------------|-----------------------------|
-| Frontend         | Java, Android Studio        |
-| UI Framework     | Jetpack                     |
+| Frontend         | Java, Android Studio        |               
 | Backend          | Java EE, Hibernate          |
 | Database         | MySQL, SQLite (offline)     |
 | Cloud Storage    | Firebase Storage, Firestore |
